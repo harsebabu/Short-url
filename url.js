@@ -1,7 +1,18 @@
+const mongoose=require("mongoose");
 
-const {nanoid}=require("nanoid");
-const url=require("../models/url");
-async function handleGeneratenewurl(req,res){
-const shortID=nanoid(8);
-
-}
+const urlSchema=new mongoose.Schema({
+    shortID:{
+        type:String,
+        require:true,
+    },
+    redirectID:{
+        type:String,
+        require:true,
+    },
+    visiblehistory:
+        [{timestamp:{type:Number}}],
+},
+{timestamps:true}
+);
+const url=mongoose.model("url",urlSchema)
+module.exports=url;
